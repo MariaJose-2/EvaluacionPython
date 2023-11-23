@@ -2,10 +2,10 @@
 class Votaciones:
     #metodo init constructor de la clase votaciones 
     def __init__(self):
-        # Inicializa un diccionario vacio para almacenar la inormacion de los votantes
+        #Inicializa un diccionario vacio para almacenar la informacion de los votantes
         self.votantes={}
-        # Inicializa una lista vacía para almacenar las novedades de los candidatos
-        self.candidatos=[]
+        #Inicializa una lista para almacenar los candidatos
+        self.candidatos=['Juan Martines #10','Marcela Andrade #07', 'Agustin Olivares #25']
 
 #metodo para registrar un votante con su informacion
     def registroVotante(self):
