@@ -39,24 +39,30 @@ class Votaciones:
             print(f"¡Voto registrado por {self.votantes[Id]['Nombres Completos']}!")  # Imprime un mensaje indicando que el voto ha sido registrado exitosamente
         else:
             print("Opción no válida.")  # Imprime un mensaje indicando que la opción seleccionada no es válida
-
+            
     def mostrarResultados(self):
     # Método para mostrar los resultados de la votación
         print("\nResultados de la votación:")
         for candidato, votos in self.votos.items():
             print(f"{candidato}: {votos} votos")  # Imprime el nombre del candidato y la cantidad de votos que ha recibido
 
-        ganador = max(self.votos, key=self.votos.get)  # Determina el candidato con el mayor número de votos
+    # Determina el candidato con el mayor número de votos
+        maxVotos = max(self.votos.values())
+        ganadores = [candidato for candidato, votos in self.votos.items() if votos == maxVotos]
 
-        print(f"\nGanador: {ganador} con {self.votos[ganador]} votos")  # Imprime el ganador y la cantidad de votos que ha recibido
-        
-        # Verifica si hay empate entre los candidatos
-        empate = [candidato for candidato, votos in self.votos.items() if votos == self.votos[ganador] and candidato != ganador]
-
-        if empate:
+        if len(ganadores) == 1:
+        # Un solo ganador
+            ganador = ganadores[0]
+            print(f"\nGanador: {ganador} con {self.votos[ganador]} votos")  # Imprime el ganador y la cantidad de votos que ha recibido
+        else:
+        # Empate entre varios candidatos
             print("\nEmpate entre los siguientes candidatos:")
-            for candidato in empate:
+            for candidato in ganadores:
                 print(f"{candidato}: {self.votos[candidato]} votos")  # Imprime el candidato y la cantidad de votos que ha recibido en caso de empate
+        
+        # Muestra el total de votos
+        totalVotos = sum(self.votos.values())
+        print(f"\nTotal de votos: {totalVotos}")
 
 # Instancia de la clase Votaciones
 votos = Votaciones()
